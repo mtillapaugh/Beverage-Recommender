@@ -1,8 +1,5 @@
 certifi==2020.6.20
 joblib==0.16.0
-mkl_fft==1.2.0
-mkl_random==1.1.1
-mkl-service==2.3.0
 numpy @ file:///C:/ci/numpy_and_numpy_base_1596215850360/work
 pandas @ file:///C:/ci/pandas_1598371563714/work
 python-dateutil==2.8.1
