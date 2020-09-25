@@ -69,14 +69,3 @@ def get_recommendations(title, cosine_sim=cosine_sim):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
-# Similar Page
-#@app.route('/similar')
-#def similar_page():
-#    drink_list = ['option 1', 'option 2', 'option 3', 'option 4']
-#    return render_template('similar.html', drink_list=drink_list)
