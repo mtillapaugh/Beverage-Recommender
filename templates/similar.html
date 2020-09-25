@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block banner_content %}
+<h2>Find a similar drink</h2>
+<p>Choose from a drink below to find similar recommendations</p>
+<a href="#drink_name" class="button scrolly">Find Similar</a>
+{% endblock banner_content %}
+
+{% block main %}
+  <form id="drink_name" action="{{ url_for('results_page') }}" method="POST">
+    <select id="mySelect" name = "drink_name">
+      {% for x in drink_list %}
+      <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Find Similar">
+  </form>
+{% endblock main %}

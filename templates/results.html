@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+{% block banner_content %}
+<h2>Results</h2>
+<a href="#main" class="button scrolly"><i class="fas fa-caret-down fa-3x"></i></a>
+{% endblock banner_content %}
+
+{% block main %}
+<!-- Main -->
+<section id="main">
+	<div class="container">
+		<div class="row gtr-200">
+			<div class="col-12">
+
+				<!-- Testing -->
+
+
+
+
+
+
+
+
+				<!-- Features -->
+				<section class="box features">
+					<div>
+						<div class="row">
+							<div class="col-3 col-6-medium col-12-small">
+
+								<!-- Feature -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="{{ rec_list['strDrinkThumb'].iloc[0] }}" alt="" /></a>
+										<h3><a href="#">{{ rec_list['strDrink'].iloc[0] }}</a></h3>
+										<p>
+											{{ rec_list['all_ingredients'].iloc[0].replace(",", ", ") }}
+										</p>
+									</section>
+
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+
+								<!-- Feature -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="{{ rec_list['strDrinkThumb'].iloc[1] }}" alt="" /></a>
+										<h3><a href="#">{{ rec_list['strDrink'].iloc[1] }}</a></h3>
+										<p>
+											{{ rec_list['all_ingredients'].iloc[1].replace(",", ", ") }}
+										</p>
+									</section>
+
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+
+								<!-- Feature -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="{{ rec_list['strDrinkThumb'].iloc[2] }}" alt="" /></a>
+										<h3><a href="#">{{ rec_list['strDrink'].iloc[2] }}</a></h3>
+										<p>
+											{{ rec_list['all_ingredients'].iloc[2].replace(",", ", ") }}
+										</p>
+									</section>
+
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+
+								<!-- Feature -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="{{ rec_list['strDrinkThumb'].iloc[3] }}" alt="" /></a>
+										<h3><a href="#">{{ rec_list['strDrink'].iloc[3] }}</a></h3>
+										<p>
+											{{ rec_list['all_ingredients'].iloc[3].replace(",", ", ") }}
+										</p>
+									</section>
+
+							</div>
+							<div class="col-12">
+								<ul class="actions">
+									<!-- li><a href="#" class="button large">More Results</a></li -->
+									<li><a href="{{ url_for('homepage') }}" class="button alt large">Start Over</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock main %}
