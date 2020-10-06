@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import json
 from flask import Flask, render_template, request
 from sklearn.metrics.pairwise import linear_kernel
@@ -21,33 +20,97 @@ def similar_page():
     return render_template("similar.html", drink_list=drink_list)
 
 # Quiz Page
-@app.route('/quiz')
+@app.route('/quiz', methods=['GET', 'POST'])
 def quiz_page():
-    return render_template('quiz.html')
+    yes_alcohol = ['alcoholic', 'non-alcoholic']
+    glass_type = ['none', 'cocktail glass', 'highball glass', 'collins glass', 'old-fashioned glass', 'shot glass', 'whiskey glass']
+    alcohol_list = ['none', 'rum', 'gin', 'vodka', 'whiskey', 'scotch', 'tequila', 'brandy', 'bourbon']
+    minor_alcohol_list = ['none', 'sweet vermouth', 'orange liqueur', 'bailey', 'kahlua', 'triple sec', 'Schnapps', 'bitters', 'malibu', 'grenadine']
+    fruit_list = ['none', 'pineapple', 'maraschino cherry', 'cranberry', 'raspberry', 'apricot']
+    citrus_list = ['none', 'lime', 'lemon', 'orange']
+    other_list = ['none', 'tonic water', 'coca-cola', 'sugar', 'cream', 'syrup', 'coffee', 'ginger', 'vanilla', 'mint']
+    return render_template('quiz.html',
+                           yes_alcohol=yes_alcohol,
+                           glass_type=glass_type,
+                           alcohol_list=alcohol_list,
+                           minor_alcohol_list=minor_alcohol_list,
+                           fruit_list=fruit_list,
+                           citrus_list=citrus_list,
+                           other_list=other_list)
 
 # Results Page
 @app.route('/results', methods=['GET', 'POST'])
 def results_page():
     if request.method == "POST":
-        drink_name = request.form.get("drink_name", None)
-        if drink_name!=None:
-            rec_list = get_recommendations(drink_name)
-            return render_template('results.html', drink_name=drink_name, rec_list=rec_list)
+        if request.form.get("drink_name"):
+            drink_name = request.form.get("drink_name", None)
+            if drink_name!=None:
+                rec_list = get_recommendations(drink_name)
+                return render_template('results.html', drink_name=drink_name, rec_list=rec_list)
+
+        else:
+            a = request.form.get("alc")
+            b = request.form.get("glass")
+            c = request.form.get("alcohollist")
+            d = request.form.get("minoralcohol")
+            e = request.form.get("fruit")
+            f = request.form.get("citrus")
+            g = request.form.get("other")
+            ingredient_list = a + ', ' + b + ', ' + c + ', ' + d + ', ' + e + ', ' + f + ', ' + g
+            new_drink = {'strDrink': 'New Drink', 'soup': ingredient_list}
+            df = pd.read_csv('./static/cocktaildb.csv')
+            df = df.append(new_drink, ignore_index=True)
+
+            # Define a TF-IDF Vectorizer Object. Remove all english stop words such as 'the', 'a'
+            tfidf = TfidfVectorizer(stop_words='english')
+            # Construct the required TF-IDF matrix by fitting and transforming the data
+            tfidf_matrix = tfidf.fit_transform(df['soup'])
+            # Compute the cosine similarity matrix
+            cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+            # Construct a reverse map of indices and movie titles
+            indices = pd.Series(df.index, index=df['strDrink']).drop_duplicates()
+
+            rec_list = get_recommendations('New Drink', cosine_sim, indices)
+            return render_template('results.html', rec_list=rec_list, df=df)
+            # a = str(request.form['Vodka'])
+            # b = str(request.form['Gin'])
+            # s = [a, b]
+            # ingredient_list = ' '.join([str(x) for x in s])
+            # new_drink = {'strDrink': 'New Drink', 'soup': ingredient_list}
+            # df = df.append(new_drink, ignore_index=True)
+            # rec_list = get_recommendations('New Drink')
+            #return render_template('results.html', drink_name=drink_name, rec_list=rec_list)
+
     return render_template('results.html', drink_name=drink_name)
+
+# Test
+@app.route('/quiz', methods=['GET', 'POST'])
+def add_ingredient(ingredient_list):
+    if request.method == "POST":
+        ingredient_list.append(request.form.get("clicked_btn"))
+    return ingredient_list
+
+# Test
+@app.route('/remove', methods=['GET', 'POST'])
+def remove_ingredient(ingredient_list):
+    if request.method == "POST":
+        ingredient_list.remove(request.form.get("clicked_btn"))
+    return ingredient_list
+
 
 # Prepare TF-IDF
 df = pd.read_csv('./static/cocktaildb.csv')
 # Define a TF-IDF Vectorizer Object. Remove all english stop words such as 'the', 'a'
 tfidf = TfidfVectorizer(stop_words='english')
 # Construct the required TF-IDF matrix by fitting and transforming the data
-tfidf_matrix = tfidf.fit_transform(df['all_ingredients'])
+tfidf_matrix = tfidf.fit_transform(df['soup'])
 # Compute the cosine similarity matrix
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 # Construct a reverse map of indices and movie titles
 indices = pd.Series(df.index, index=df['strDrink']).drop_duplicates()
 
 
-def get_recommendations(title, cosine_sim=cosine_sim):
+def get_recommendations(title, cosine_sim=cosine_sim, indices=indices):
     # Get the index of the movie that matches the title
     idx = indices[title]
 

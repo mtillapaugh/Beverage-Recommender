@@ -2,7 +2,7 @@
 
 {% block banner_content %}
 <h2>Find a similar drink</h2>
-<p>Choose from a drink below to find similar recommendations</p>
+<p>Choose Ingredients Below to Find Recommended Drinks</p>
 <a href="#main" class="button scrolly">Take Quiz</a>
 {% endblock banner_content %}
 
@@ -14,83 +14,162 @@
             <div class="col-12">
 
                 <!-- Highlight -->
-                    <section id="quiz_one" class="box highlight">
-                        <ul class="special">
-                            <li><a href="#quiz_two" class="icon solid fa-thumbs-up"><span class="label">Magnifier</span></a></li>
-                            <li><a href="#quiz_two" class="icon solid fa-thumbs-down"><span class="label">Tablet</span></a></li>
-                        </ul>
+                <section id="quiz_one" class="box highlight">
+                      <form id="drink_quiz" action="{{ url_for('results_page') }}" method="POST">
                         <header>
+                            <p></p>
                             <h2>Do you like Alcoholic or Non-Alcoholic drinks?</h2>
-                            <p>And some text that attempts to explain their significance</p>
                         </header>
-                        <p>
-                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
-                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
-                        </p>
-                    </section>
-                <!-- Highlight -->
-                    <section id="quiz_two" class="box highlight">
-                        <ul class="special">
-                            <li><a href="#quiz_three" class="icon solid fa-thumbs-up"><span class="label">Magnifier</span></a></li>
-                            <li><a href="#quiz_three" class="icon solid fa-thumbs-down"><span class="label">Tablet</span></a></li>
-                        </ul>
+                            <select id="mySelect" name = "alc">
+                              {% for x in yes_alcohol %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
                         <header>
-                            <h2>Do you like alcohol forward drinks?</h2>
-                            <p>And some text that attempts to explain their significance</p>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>What type of glass do you enjoy?</h2>
                         </header>
-                        <p>
-                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
-                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
-                        </p>
-                    </section>
-                <!-- Highlight -->
-                    <section id="quiz_three" class="box highlight">
-                        <ul class="special">
-                            <li><a href="#quiz_four" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
-                            <li><a href="#quiz_four" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
-                        </ul>
+                            <select id="mySelect" name = "glass">
+                              {% for x in glass_type %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
                         <header>
-                            <h2>What type of alcohol do you enjoy most?</h2>
-                            <p>And some text that attempts to explain their significance</p>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>Which main type of alcohol do you like most?</h2>
                         </header>
-                        <p>
-                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
-                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
-                        </p>
-                        </p>
-                    </section>
-                <!-- Highlight -->
-                    <section id="quiz_four" class="box highlight">
-                        <ul class="special">
-                            <li><a href="#" class="icon solid fa-search"><span class="label">Vodka</span></a></li>
-                            <li><a href="#" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
-                            <li><a href="#" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
-                            <li><a href="#" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
-                            <li><a href="#" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>
-                            <li><a href="#" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
-                            <li><a href="#" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
-                            <li><a href="#" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
-                        </ul>
+                            <select id="mySelect" name = "alcohollist">
+                              {% for x in alcohol_list %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
                         <header>
-                            <h2>Any other flavors you enjoy?</h2>
-                            <p>(Select all that apply)</p>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>Any other types of Alcohol?</h2>
                         </header>
-                        <p>
-                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
-                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
-                        </p>
-                    </section>
-                <div class="col-12">
-                    <ul class="actions">
-                        <li><a href="{{url_for('homepage')}}" class="button large">View Results</a></li>
-                    </ul>
-                </div>
+                            <select id="mySelect" name = "minoralcohol">
+                              {% for x in minor_alcohol_list %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
+                        <header>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>Fruits?</h2>
+                        </header>
+                            <select id="mySelect" name = "fruit">
+                              {% for x in fruit_list %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
+                        <header>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>Citrus?</h2>
+                        </header>
+                            <select id="mySelect" name = "citrus">
+                              {% for x in citrus_list %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
+                        <header>
+                            <p></p>
+                            <p>_____________</p>
+                            <p></p>
+                            <h2>Anything Else?</h2>
+                        </header>
+                            <select id="mySelect" name = "other">
+                              {% for x in other_list %}
+                              <option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+                              {% endfor %}
+                            </select>
+                        <header>
+                            <p></p>
+                            <p></p>
+                        </header>
+                            <input type="submit" value="Quiz Results">
+                      </form>
+                </section>
+
+
+<!-- Commented out for future button styling -->
+<!--                    <form method="POST" action={{url_for('results_page')}}>-->
+<!--                        <ul class="special">-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Vodka">Vodka</button></li>-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Gin">Gin</button></li>-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Bourbon">Bourbon</button></li>-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Whiskey">Whiskey</button></li>-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Tequila">Tequila</button></li>-->
+<!--                            <li><button type="submit" name="clicked_btn" class="icon solid" value="Rum">Rum</button></li>-->
+<!--                        </ul>-->
+<!--                            <input type="submit">-->
+<!--                    </form>-->
+
+<!-- Commented out for future buttons or styling changes -->
+<!--                    <section id="quiz_one" class="box highlight">-->
+<!--                        <ul class="special">-->
+<!--                            <li><a href="#quiz_two" class="icon solid fa-thumbs-up"><span class="label">Magnifier</span></a></li>-->
+<!--                            <li><a href="#quiz_two" class="icon solid fa-thumbs-down"><span class="label">Tablet</span></a></li>-->
+<!--                        </ul>-->
+<!--                        <header>-->
+<!--                            <h2>Do you like Alcoholic or Non-Alcoholic drinks?</h2>-->
+<!--                            <p>And some text that attempts to explain their significance</p>-->
+<!--                        </header>-->
+<!--                        <p>-->
+<!--                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />-->
+<!--                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.-->
+<!--                        </p>-->
+<!--                    </section>-->
+<!--                &lt;!&ndash; Highlight &ndash;&gt;-->
+<!--                    <section id="quiz_two" class="box highlight">-->
+<!--                        <ul class="special">-->
+<!--                            <li><a href="#quiz_three" class="icon solid fa-thumbs-up"><span class="label">Magnifier</span></a></li>-->
+<!--                            <li><a href="#quiz_three" class="icon solid fa-thumbs-down"><span class="label">Tablet</span></a></li>-->
+<!--                        </ul>-->
+<!--                        <header>-->
+<!--                            <h2>Do you like alcohol forward drinks?</h2>-->
+<!--                            <p>And some text that attempts to explain their significance</p>-->
+<!--                        </header>-->
+<!--                        <p>-->
+<!--                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />-->
+<!--                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.-->
+<!--                        </p>-->
+<!--                    </section>-->
+<!--                &lt;!&ndash; Highlight &ndash;&gt;-->
+<!--                    <section id="quiz_three" class="box highlight">-->
+<!--                        <ul class="special">-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-flask"><span class="label">Flask</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-flask"><span class="label">Flask</span></a></li>-->
+<!--                            <li><a href="#quiz_four" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>-->
+<!--                        </ul>-->
+<!--                        <header>-->
+<!--                            <h2>What type of alcohol do you enjoy most?</h2>-->
+<!--                            <p>And some text that attempts to explain their significance</p>-->
+<!--                        </header>-->
+<!--                        <p>-->
+<!--                            Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />-->
+<!--                            ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.-->
+<!--                        </p>-->
+<!--                        </p>-->
+<!--                    </section>-->
+<!--                <div class="col-12">-->
+<!--                    <ul class="actions">-->
+<!--                        <li><a href="{{url_for('results_page')}}" class="button large">View Results</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
 
             </div>
         </div>

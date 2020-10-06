@@ -20,7 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dd61451-a550-4b54-8a0b-a5f861ede066" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/cocktaildb.csv" beforeDir="false" afterPath="$PROJECT_DIR$/static/cocktaildb.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test notebooks/.ipynb_checkpoints/sql_test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/test notebooks/.ipynb_checkpoints/sql_test-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test notebooks/sql_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/test notebooks/sql_test.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,5 +99,9 @@
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="944" y="142" width="1616" height="1037" key="dock-window-1/0.0.2560.1410/2560.0.1920.1050@2560.0.1920.1050" timestamp="1600747270509" />
+    <state x="3183" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1601947798085">
+      <screen x="2560" y="0" width="1920" height="1050" />
+    </state>
+    <state x="3183" y="227" width="672" height="678" key="search.everywhere.popup/0.0.2560.1410/2560.0.1920.1050@2560.0.1920.1050" timestamp="1601947798085" />
   </component>
 </project>
